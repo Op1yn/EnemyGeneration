@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private List<SpawnPoint> spawnPoints;
-    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private List<SpawnPoint> _spawnPoints;
     [SerializeField] private float _timeBetweenSpawns;
 
     private Coroutine _spawnTimerCoroutine;
@@ -23,24 +22,12 @@ public class Spawner : MonoBehaviour
     private IEnumerator CreateEnemy()
     {
         WaitForSeconds waitingBeforeSpawn = new WaitForSeconds(_timeBetweenSpawns);
-        Vector3 spawnPointPosition;
 
         while (enabled)
         {
-            spawnPointPosition = spawnPoints[Random.Range(0, spawnPoints.Count)].transform.position;
-            Instantiate(_enemyPrefab, spawnPointPosition, GetDirection());
+            _spawnPoints[Random.Range(0, _spawnPoints.Count)].CreateEemy();
 
             yield return waitingBeforeSpawn;
         }
-    }
-
-    private Quaternion GetDirection()
-    {
-        float minAngle = 0;
-        float maxAngle = 360;
-
-        Quaternion direction = Quaternion.Euler(new Vector3(0, Random.Range(minAngle, maxAngle), 0));
-
-        return direction;
     }
 }
