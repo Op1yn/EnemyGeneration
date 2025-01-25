@@ -7,6 +7,6 @@ public class SpawnPoint : MonoBehaviour
 
     internal void CreateEemy()
     {
-        Instantiate(_enemyPrefab, transform.position, Quaternion.identity).SetTarget(_target.GetComponent<Transform>());
+        Instantiate(_enemyPrefab, transform.position, Quaternion.identity).SetTarget(_target.transform);
     }
 }

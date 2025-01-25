@@ -11,14 +11,14 @@ public class Enemy : MonoBehaviour
         Move();
     }
 
+    public void SetTarget(Transform transform)
+    {
+        _targetTransform = transform;
+    }
+
     private void Move()
     {
         transform.position = Vector3.MoveTowards(transform.position, _targetTransform.position, _speed * Time.deltaTime);
         transform.LookAt(_targetTransform);
-    }
-
-    public void SetTarget(Transform transform)
-    {
-        _targetTransform = transform;
     }
 }

@@ -14,17 +14,22 @@ public class Target : MonoBehaviour
 
     private void Move()
     {
-        CheckPoint();
+        if (HasPointReached())
+        {
+            SwitchRoutePoint();
+        }
 
         transform.position = Vector3.MoveTowards(transform.position, _transforms[_currentPoint].position, _speed * Time.deltaTime);
         transform.LookAt(_transforms[_currentPoint].position);
     }
 
-    private void CheckPoint()
+    private bool HasPointReached()
     {
-        if (transform.position == _transforms[_currentPoint].position)
-        {
-            _currentPoint = (_currentPoint + 1) % _transforms.Length;
-        }
+        return transform.position == _transforms[_currentPoint].position;
+    }
+
+    private void SwitchRoutePoint()
+    {
+        _currentPoint = (_currentPoint + 1) % _transforms.Length;
     }
 }
