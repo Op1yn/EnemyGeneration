@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    [SerializeField] private Enemy _enemyPrefab;
+    [SerializeField] private Enemy _prefab;
     [SerializeField] private Target _target;
 
-    internal void CreateEemy()
+    public void CreateEemy()
     {
-        Instantiate(_enemyPrefab, transform.position, Quaternion.identity).SetTarget(_target.transform);
+        Instantiate(_prefab, transform.position, Quaternion.identity).SetTarget(_target.transform);
     }
 }

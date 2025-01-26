@@ -5,23 +5,16 @@ using UnityEngine;
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<SpawnPoint> _spawnPoints;
-    [SerializeField] private float _timeBetweenSpawns;
-
-    private Coroutine _spawnTimerCoroutine;
+    [SerializeField] private float _spawnDelay;
 
     private void Start()
     {
-        _spawnTimerCoroutine = StartCoroutine(CreateEnemy());
-    }
-
-    private void OnDisable()
-    {
-        StopCoroutine(_spawnTimerCoroutine);
+        StartCoroutine(CreateEnemy());
     }
 
     private IEnumerator CreateEnemy()
     {
-        WaitForSeconds waitingBeforeSpawn = new WaitForSeconds(_timeBetweenSpawns);
+        WaitForSeconds waitingBeforeSpawn = new WaitForSeconds(_spawnDelay);
 
         while (enabled)
         {
